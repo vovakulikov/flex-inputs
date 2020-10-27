@@ -1,0 +1,245 @@
+
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage * 100%);
+}
+
+@function fade($color, $percentage) {
+  @return transparentize($color, 1 - $percentage);
+}
+
+$kit-control-size-s: 24px;
+$kit-control-size-m: 32px;
+$kit-control-size-l: 40px;
+$kit-control-size-xl: 48px;
+
+$kit-control-lineheight-s: 1.66666667; // 20/12
+$kit-control-lineheight-m: 1.57142857; // 22/14
+$kit-control-lineheight-l: 1.5; // 24/16
+$kit-control-lineheight-xl: 1.5555556; // 28/18
+
+$kit-control-fontsize-s: 12px;
+$kit-control-fontsize-m: 14px;
+$kit-control-fontsize-l: 16px;
+$kit-control-fontsize-xl: 18px;
+
+$kit-control-color-action: #4488ff;
+
+$text-field-padding-s-horizontal: 8px;
+$text-field-padding-s-vertical: round(($kit-control-size-s - $kit-control-lineheight-s * $kit-control-fontsize-s)/2);
+$text-field-padding-m-horizontal: 10px;
+$text-field-padding-m-vertical: round(($kit-control-size-m - $kit-control-lineheight-m * $kit-control-fontsize-m)/2);
+$text-field-padding-l-horizontal: 12px;
+$text-field-padding-l-vertical: round(($kit-control-size-l - $kit-control-lineheight-l * $kit-control-fontsize-l)/2);
+$text-field-padding-xl-horizontal: 16px;
+$text-field-padding-xl-vertical: round(($kit-control-size-xl - $kit-control-lineheight-xl * $kit-control-fontsize-xl)/2);
+
+$text-field-color: fade(#000, .9);
+$text-field-color-disabled: #ababab;
+
+$text-field-placeholder-color: fade-out(#000, 0.58);;
+$text-field-placeholder-color-disabled: #ababab;
+
+$text-field-caret-color: $kit-control-color-action;
+
+$text-field-background-color: #ffffff;
+
+$text-field-border-width: 1px;
+$text-field-border-radius: 2px;
+
+$text-field-border-color: fade-out(#000, .4);
+$text-field-border-color-hover: fade-out(#000, .2);
+$text-field-border-color-focus: $kit-control-color-action;
+$text-field-border-color-disabled: fade(#ababab, .5);
+$text-field-border-color-invalid: #f15866;
+
+// Inverted variables
+
+$text-field-color-inverted: #ffffff;
+$text-field-color-inverted-disabled: #ababab;
+
+$text-field-placeholder-color-inverted: fade(#ffffff, .32);
+$text-field-placeholder-color-inverted-disabled: #ababab;
+
+$text-field-background-color-inverted: transparent;
+
+$text-field-border-color-inverted: fade(#ffffff, .5);
+$text-field-border-color-inverted-hover: fade(#ffffff, .6);
+$text-field-border-color-inverted-focus: $kit-control-color-action;
+$text-field-border-color-inverted-disabled: fade(#ababab, .5);
+$text-field-border-color-inverted-invalid: #f15866;
+
+@mixin placeholder($placeholder-font-color) {
+
+  &::-webkit-input-placeholder {
+    color: $placeholder-font-color;
+  }
+
+  &::-moz-placeholder {
+    color: $placeholder-font-color;
+  }
+
+  &:-ms-input-placeholder {
+    color: $placeholder-font-color;
+  }
+}
+
+.text-input-basis-styles {
+  display: block;
+  width: 100%;
+  border: $text-field-border-width solid $text-field-border-color;
+  border-radius: $text-field-border-radius;
+  color: $text-field-color;
+  background-color: $text-field-background-color;
+  outline: none;
+
+  @include placeholder($text-field-placeholder-color);
+
+  // todo: [crafting-normalize]
+  &::-moz-placeholder {
+    opacity: 1;
+  }
+
+  // removing ie custom clear button
+  // link: http://stackoverflow.com/questions/20473413/remove-ie11s-clear-field-x-button-on-windows-8
+  &::-ms-clear {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  $text-field: &;
+
+  // Sizes
+  &.size-s {
+    font-size: $kit-control-fontsize-s;
+  }
+
+  & { // (.size-m)
+    font-size: $kit-control-fontsize-m;
+  }
+
+  &.size-l {
+    font-size: $kit-control-fontsize-l;
+  }
+
+  &.size-xl{
+    font-size: $kit-control-fontsize-xl;
+  }
+
+  &.skin-default {
+
+    &.size-s {
+      padding-right: $text-field-padding-s-horizontal;
+      padding-left: $text-field-padding-s-horizontal;
+    }
+
+    & { // (.size-m)
+      padding-right: $text-field-padding-m-horizontal;
+      padding-left: $text-field-padding-m-horizontal;
+    }
+
+    &.size-l {
+      padding-right: $text-field-padding-l-horizontal;
+      padding-left: $text-field-padding-l-horizontal;
+    }
+
+    &.size-xl {
+      padding-right: $text-field-padding-xl-horizontal;
+      padding-left: $text-field-padding-xl-horizontal;
+    }
+  }
+
+  &.skin-light {
+    padding: 0;
+    padding-top: $text-field-border-width; // compensation for the missing top border
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-radius: 0;
+    background-color: transparent;
+  }
+
+  &.skin-invisible {
+    padding: 0;
+    padding-top: $text-field-border-width;  // compensation for the missing top border
+    border-top: none;
+    border-right: none;
+    border-bottom-color: transparent;
+    border-left: none;
+    border-radius: 0;
+    background-color: transparent;
+  }
+
+  // states
+
+  &:hover {
+    border-color: $text-field-border-color-hover;
+  }
+
+  &:focus {
+    border-color: $text-field-border-color-focus;
+    caret-color: $text-field-caret-color;
+  }
+
+  &:disabled {
+    border-color: $text-field-border-color-disabled;
+    color: $text-field-color-disabled;
+
+    @include placeholder($text-field-placeholder-color-disabled);
+  }
+
+  &.is-invalid,
+  &:not(.pending).touched.dirty.invalid, // user tried to fill it up and field validation is not currently in progress.
+  &:invalid {
+    border-color: $text-field-border-color-invalid;
+    caret-color: currentColor;
+  }
+
+  // Themes
+
+  &.theme-dark {
+    border-color: $text-field-border-color-inverted;
+    color: $text-field-color-inverted;
+    background-color: $text-field-background-color-inverted;
+
+    @include placeholder($text-field-placeholder-color-inverted);
+
+    // - skins
+
+    #{$text-field}.skin-invisible {
+      border-bottom-color: transparent;
+    }
+
+    // - states
+
+    #{$text-field}:hover {
+      border-color: $text-field-border-color-inverted-hover;
+    }
+
+    #{$text-field}:focus {
+      border-color: $text-field-border-color-inverted-focus;
+    }
+
+    #{$text-field}:disabled {
+      border-color: $text-field-border-color-inverted-disabled;
+      color: $text-field-color-inverted-disabled;
+
+      @include placeholder($text-field-placeholder-color-inverted-disabled);
+    }
+
+    #{$text-field}.is-invalid,
+    #{$text-field}:not(.pending).touched.dirty.invalid, // user tried to fill it up and field validation is not currently in progress.
+    #{$text-field}:invalid {
+      border-color: $text-field-border-color-inverted-invalid;
+    }
+  }
+
+  &:read-only.with-select-on-focus {
+    cursor: pointer;
+  }
+}
+

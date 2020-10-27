@@ -1,0 +1,114 @@
+@import '../text-field';
+@import '../textarea/textarea.scss';
+
+.flex-textarea {
+  font-family: inherit;
+  @extend .text-input-basis-styles;
+  @include textarea-size();
+
+  position: relative; // for text-field
+  display: block;
+  text-align: left;
+  box-sizing: border-box;
+  border: none;
+
+  .text-field {
+    font-family: inherit;
+    position: absolute; // containing block: :host
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    text-align: inherit; // depends on :host value
+
+    // overrides the sized mods
+    &.text-field {
+      height: 100%;
+    }
+  }
+
+  /*
+    Autogrow textarea trick
+
+    The ghost contains either the placeholder or current value
+    and takes the width and height from them expanding
+    the container so the absolutely positioned textarea grows
+    accordingly.
+
+    [*] The ghost also provides textarea border emulation to expand
+    container. Should be on :host, but thanks to Safari
+    calc(100% + 2px) rounding 100% down to int that causes the autogrow bug.
+  */
+  .text-field-ghost {
+    min-width: 16px;
+    border: $text-field-border-width solid transparent; // border should be on :host but ^[*]
+    white-space: pre-wrap;
+    visibility: hidden;
+    word-wrap: break-word;
+  }
+}
+
+
+// Skins
+
+.flex-textarea.skin-default {
+
+  &.size-s {
+    padding-right: $text-field-padding-s-horizontal;
+    padding-left: $text-field-padding-s-horizontal;
+  }
+
+  & { // (.size-m)
+    padding-right: $text-field-padding-m-horizontal;
+    padding-left: $text-field-padding-m-horizontal;
+  }
+
+  &.size-l {
+    padding-right: $text-field-padding-l-horizontal;
+    padding-left: $text-field-padding-l-horizontal;
+  }
+
+  &.size-xl {
+    padding-right: $text-field-padding-xl-horizontal;
+    padding-left: $text-field-padding-xl-horizontal;
+  }
+}
+
+.flex-textarea.skin-light,
+.flex-textarea.skin-invisible {
+  padding-top: $text-field-border-width; // compensation for the missing top border
+
+  .text-field-ghost {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+  }
+}
+
+
+// Sizes
+
+.flex-textarea.size-s {
+  @include sized-textarea(s);
+  min-height: $kit-control-size-s;
+  font-size: $kit-control-fontsize-s;
+}
+
+.flex-textarea { // (.size-m)
+  @include sized-textarea(m);
+  min-height: $kit-control-size-m;
+  font-size: $kit-control-fontsize-m;
+}
+
+.flex-textarea.size-l {
+  @include sized-textarea(l);
+  min-height: $kit-control-size-l;
+  font-size: $kit-control-fontsize-l;
+}
+
+.flex-textarea.size-xl {
+  @include sized-textarea(xl);
+  min-height: $kit-control-size-xl;
+  font-size: $kit-control-fontsize-xl;
+}

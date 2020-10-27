@@ -1,0 +1,97 @@
+@import "../text-field.scss";
+
+$kit-control-textarea-default-rows: 4;
+
+/*
+  textarea-size = vertical-padding * 2 + line-box-height * line-count;
+*/
+
+$kit-control-line-box-s: round($kit-control-fontsize-s * $kit-control-lineheight-s);
+$kit-control-line-box-m: round($kit-control-fontsize-m * $kit-control-lineheight-m);
+$kit-control-line-box-l: round($kit-control-fontsize-l * $kit-control-lineheight-l);
+$kit-control-line-box-xl: round($kit-control-fontsize-xl * $kit-control-lineheight-xl);
+
+$kit-control-textarea-size-s: round($text-field-padding-s-vertical * 2 + $kit-control-line-box-s * $kit-control-textarea-default-rows);
+$kit-control-textarea-size-m: round($text-field-padding-m-vertical * 2 + $kit-control-line-box-m * $kit-control-textarea-default-rows);
+$kit-control-textarea-size-l: round($text-field-padding-l-vertical * 2 + $kit-control-line-box-l * $kit-control-textarea-default-rows);
+$kit-control-textarea-size-xl: round($text-field-padding-xl-vertical * 2 + $kit-control-line-box-xl * $kit-control-textarea-default-rows);
+
+$textarea-paddings: (
+  s: $text-field-padding-s-vertical,
+  m: $text-field-padding-m-vertical,
+  l: $text-field-padding-l-vertical,
+  xl: $text-field-padding-xl-vertical,
+);
+
+$textarea-lineheight: (
+  s: $kit-control-lineheight-s,
+  m: $kit-control-lineheight-m,
+  l: $kit-control-lineheight-l,
+  xl: $kit-control-lineheight-xl,
+);
+
+// Sizes
+
+@mixin textarea-size() {
+  &.size-s {
+    @include sized-textarea(s);
+  }
+
+  & { // (.size-m)
+    @include sized-textarea(m);
+  }
+
+  &.size-l {
+    @include sized-textarea(l);
+  }
+
+  &.size-xl {
+    @include sized-textarea(xl);
+  }
+}
+
+@mixin sized-textarea ($size) {
+
+  // generating textarea size related variable names
+  $tf-vertical-padding-var: map-get($textarea-paddings, $size);
+  $c-lineheight-var: map-get($textarea-lineheight, $size);
+
+  padding-top: $tf-vertical-padding-var - $text-field-border-width;
+  padding-bottom: $tf-vertical-padding-var - $text-field-border-width;
+  line-height: $c-lineheight-var;
+
+  &.skin-light,
+  &.skin-invisible {
+    padding-top: $tf-vertical-padding-var; // no top border
+  }
+}
+
+.textarea {
+  margin: 0; // todo: [crafting-normalize] reset textarea margin in FF
+  overflow: auto; // for ie, https://css-tricks.com/textarea-tricks/#article-header-id-8
+  resize: none;
+  box-sizing: border-box;
+
+  @extend .text-input-basis-styles;
+  @include textarea-size();
+}
+
+
+.textarea.is-autogrowable {
+
+  &.size-s {
+    min-height: $kit-control-size-s;
+  }
+
+  & { // (.size-m)
+    min-height: $kit-control-size-m;
+  }
+
+  &.size-l {
+    min-height: $kit-control-size-l;
+  }
+
+  &.size-xl {
+    min-height: $kit-control-size-xl;
+  }
+}
