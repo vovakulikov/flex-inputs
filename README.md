@@ -16,7 +16,7 @@ This package is still in the works, please do not use it now.
 - **Simple**: The interface is straight forward and easy to use.
 - **No dependencies** 
 
-You can try it on [live demo page](https://vovakulikov.github.io/flex-textarea)
+You can try it on [live demo page](https://vovakulikov.github.io/flex-inputs/)
 
 ## Install
 

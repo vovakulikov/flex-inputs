@@ -12,15 +12,16 @@
   },
   "author": "vovakulikov@icloud.com",
   "license": "ISC",
-  "dependencies": {
+  "peerDependencies": {
     "classnames": "^2.2.6",
-    "gh-pages": "^3.1.0",
-    "parcel-bundler": "^1.12.4",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "rollup-plugin-terser": "^7.0.2"
+    "react-dom": "^16.12.0"
   },
   "devDependencies": {
+    "gh-pages": "^3.1.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "mini-css-extract-plugin": "^1.2.1",
+    "parcel-bundler": "^1.12.4",
     "@babel/cli": "^7.8.3",
     "@babel/core": "^7.8.3",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
