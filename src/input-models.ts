@@ -1,30 +1,30 @@
 
 export type IInputProps = {
-  size?: InputSize,
-  theme?: InputTheme,
-  skin?: InputSkin,
+  size?: InputSize | keyof typeof InputSize,
+  theme?: InputTheme | keyof typeof InputTheme,
+  skin?: InputSkin | keyof typeof InputSkin,
   isInvalid?: boolean;
 };
 
 export enum InputSize {
-  s,
-  m,
-  l,
-  xl,
+  s = 's',
+  m = 'm',
+  l = 'l',
+  xl = 'xl',
 }
 
 export enum InputSkin {
-  default,
-  light,
-  invisible,
+  default = 'default',
+  light = 'light',
+  invisible = 'invisible',
 }
 
 export enum InputTheme {
-  default,
-  dark,
+  default= 'default',
+  dark= 'dark',
 }
 
-export const getSizeClass = (styles: any) => (size: InputSize) => {
+export const getSizeClass = (styles: any) => (size: keyof typeof InputSize) => {
   const sizeClasses = {
     [InputSize.s]: styles.sizeS,
     [InputSize.m]: '',
@@ -35,7 +35,7 @@ export const getSizeClass = (styles: any) => (size: InputSize) => {
   return sizeClasses[size];
 };
 
-export const getSkinClass = (styles: any) => (skin: InputSkin) => {
+export const getSkinClass = (styles: any) => (skin: keyof typeof InputSkin) => {
   const skinClasses = {
     [InputSkin.default]: styles.skinDefault,
     [InputSkin.light]: styles.skinLight,
@@ -45,7 +45,7 @@ export const getSkinClass = (styles: any) => (skin: InputSkin) => {
   return skinClasses[skin];
 };
 
-export const getThemeClass = (styles: any) => (theme: InputTheme) => {
+export const getThemeClass = (styles: any) => (theme: keyof typeof InputTheme) => {
   const themeClasses = {
     [InputTheme.dark]: styles.themeDark,
     [InputTheme.default]: '',

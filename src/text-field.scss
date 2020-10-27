@@ -126,7 +126,7 @@ $text-field-border-color-inverted-invalid: #f15866;
     font-size: $kit-control-fontsize-l;
   }
 
-  &.size-xl{
+  &.size-xl {
     font-size: $kit-control-fontsize-xl;
   }
 
@@ -154,8 +154,8 @@ $text-field-border-color-inverted-invalid: #f15866;
   }
 
   &.skin-light {
-    padding: 0;
-    padding-top: $text-field-border-width; // compensation for the missing top border
+    // compensation for the missing top border
+    padding: $text-field-border-width 0 0;
     border-top: none;
     border-right: none;
     border-left: none;
@@ -164,8 +164,8 @@ $text-field-border-color-inverted-invalid: #f15866;
   }
 
   &.skin-invisible {
-    padding: 0;
-    padding-top: $text-field-border-width;  // compensation for the missing top border
+    // compensation for the missing top border
+    padding: $text-field-border-width 0 0;
     border-top: none;
     border-right: none;
     border-bottom-color: transparent;
@@ -192,13 +192,6 @@ $text-field-border-color-inverted-invalid: #f15866;
     @include placeholder($text-field-placeholder-color-disabled);
   }
 
-  &.is-invalid,
-  &:not(.pending).touched.dirty.invalid, // user tried to fill it up and field validation is not currently in progress.
-  &:invalid {
-    border-color: $text-field-border-color-invalid;
-    caret-color: currentColor;
-  }
-
   // Themes
 
   &.theme-dark {
@@ -209,13 +202,11 @@ $text-field-border-color-inverted-invalid: #f15866;
     @include placeholder($text-field-placeholder-color-inverted);
 
     // - skins
-
     #{$text-field}.skin-invisible {
       border-bottom-color: transparent;
     }
 
     // - states
-
     #{$text-field}:hover {
       border-color: $text-field-border-color-inverted-hover;
     }
@@ -229,12 +220,6 @@ $text-field-border-color-inverted-invalid: #f15866;
       color: $text-field-color-inverted-disabled;
 
       @include placeholder($text-field-placeholder-color-inverted-disabled);
-    }
-
-    #{$text-field}.is-invalid,
-    #{$text-field}:not(.pending).touched.dirty.invalid, // user tried to fill it up and field validation is not currently in progress.
-    #{$text-field}:invalid {
-      border-color: $text-field-border-color-inverted-invalid;
     }
   }
 
