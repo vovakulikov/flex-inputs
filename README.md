@@ -4,17 +4,11 @@
 </video>
 
 <div>
-  <strong>textarea</strong> components which can grow.
+  <strong>flex-textarea</strong> components which can grow.
 </div>
-
-#flex-textarea components
 
 This package is still in the works, please do not use it now.
  
-## Install
-
-`npm install react-flex-textarea`
-
 ## Features
 
 - **Small**: Just 2 KB gzipped js and 2 KB gzipped css.
@@ -23,6 +17,10 @@ This package is still in the works, please do not use it now.
 - **No dependencies** 
 
 You can try it on [live demo page](https://vovakulikov.github.io/flex-textarea)
+
+## Install
+
+`npm install react-flex-textarea`
 
 ## Usage
 
