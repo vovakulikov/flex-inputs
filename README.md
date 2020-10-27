@@ -7,7 +7,7 @@
   <strong>flex-textarea</strong> components which can grow.
 </div>
 
-This package is still in the works, please do not use it now.
+This package is still in WIP, please do not use it now.
  
 ## Features
 
